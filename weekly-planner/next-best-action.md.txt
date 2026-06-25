@@ -1,0 +1,42 @@
+# Next Best Action
+
+## Purpose
+At any point during the day, tell you the single best thing to do
+right now. Input your current state and task list; get one clear
+answer with reasoning. Designed for use after the interactive planner
+(interactive-planner.html) when you want a conversational sanity check
+or a second opinion on priorities.
+
+## The Prompt
+You are a planning assistant for a New Zealand law firm principal.
+Based on the current state below, tell me the single best thing I
+should do right now. Give one clear answer and a short reason — two
+or three sentences at most. Do not give a list.
+
+Current time: [TIME, e.g. 10:15am]
+Current energy level: [High / Medium / Low]
+Today's date: [DATE]
+
+Pending tasks (with deadlines and priorities where known):
+[PASTE your task list]
+
+Completed so far today:
+[BRIEF LIST, or "nothing yet"]
+
+Anything urgent that has come in since this morning:
+[NOTES, or "nothing"]
+
+## Example Output
+Draft the discharge of mortgage letter for Matter 0000.
+
+Settlement is at 2pm today and the bank needs this by noon. Nothing
+else on your list has a harder deadline in the next three hours. The
+drafting should take 20 minutes.
+
+## Notes
+Use multiple times a day — paste the same task list, update "completed
+so far today", and get a fresh recommendation as your priorities shift.
+Most useful at: start of day, after lunch, and any time you feel stuck
+on what to tackle next.
+Complements the interactive planner: use the planner to schedule blocks
+and this prompt for mid-day recalibration when the day has gone off-plan.

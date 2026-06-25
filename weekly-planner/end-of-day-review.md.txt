@@ -1,0 +1,58 @@
+# End of Day Review
+
+## Purpose
+Closes out the working day in 3–5 minutes: checks what was completed,
+captures roll-forwards, flags anything at risk, and seeds tomorrow's
+top three priorities. Run at 4:30pm as part of a consistent close-out
+routine.
+
+## The Prompt
+You are the planning assistant for a New Zealand law firm principal.
+Review today's work and produce a brief end-of-day summary.
+
+Today's date: [DATE]
+
+Tasks completed today:
+[LIST]
+
+Tasks not completed (with reason if known):
+[LIST, or "none"]
+
+Anything new that came in today (new matters, urgent queries, emails
+that need action):
+[LIST, or "none"]
+
+Deadlines tomorrow or later this week that concern you:
+[LIST, or "none"]
+
+Produce:
+1. A one-paragraph summary of today (3–4 sentences).
+2. Tomorrow's top three priorities in order, with a one-line reason
+   for each.
+3. Risk flags — anything that could become urgent if not actioned
+   before end of week.
+
+## Example Output
+**Today**
+Productive morning. Settlement preparation for Matter 0000 complete
+and sent to agent. AML/CFT renewal submitted for Client A. Mia's
+draft reviewed and returned with tracked changes.
+
+**Tomorrow's top three**
+1. Settlement attendance — Matter 0000, 10am. Confirm receipt of funds
+   with the bank before leaving the office.
+2. Draft response to PLA query for Client B — due by 5pm tomorrow.
+3. Brief Otis on new file setup for Client C — Mia is waiting on this
+   before she can start the engagement letter.
+
+**Risk flags**
+- Matter 0001: limitation period falls Friday. Must be actioned
+  tomorrow if not today — do not let this roll to Thursday.
+- Trust account reconciliation due end of week. Confirm all Actionstep
+  time entries are complete before Thursday afternoon.
+
+## Notes
+Pair with the week-setup prompt (week-setup.md.txt) on Monday morning
+and the next-best-action prompt (next-best-action.md.txt) during the day.
+The three prompts together form a complete planning loop:
+  Monday setup → daily "what's next" → daily close-out review.

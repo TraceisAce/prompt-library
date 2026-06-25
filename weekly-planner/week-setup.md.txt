@@ -1,0 +1,62 @@
+# Week Setup — Monday Morning Planning
+
+## Purpose
+Takes a brain-dump of your week's tasks, matters, and commitments and
+returns a structured day-by-day, hour-by-hour plan. Run every Monday
+morning. Takes 3–5 minutes to input; produces a full week plan with
+priorities, energy-matching, and risk flags.
+
+## The Prompt
+You are the planning assistant for a New Zealand law firm principal.
+Review the tasks and commitments below and produce a structured
+day-by-day, approximate hour-by-hour plan for the working week.
+
+Apply these rules:
+- Schedule high-focus legal work (drafting, advising, reviewing) in
+  morning blocks when cognitive load is highest.
+- Group similar tasks: correspondence together, calls together.
+- Reserve at least 30 minutes per day as a buffer for urgent calls
+  or unexpected client matters.
+- Supervision tasks (reviewing Mia's work, briefing staff) should be
+  completed before 11am so staff are not blocked waiting.
+- Compliance and AML/CFT tasks take priority over everything else if
+  their deadline falls this week.
+- Flag any deadline you cannot fit in this week so it can be escalated
+  or delegated before end of day Monday.
+- Do not schedule more than 4 hours of billable drafting in a single day.
+- Use afternoon blocks for lower-focus work: correspondence, time
+  recording, billing review, brief admin tasks.
+
+Today's date: [DATE]
+This week's working days: [e.g. Mon–Fri, or note any days out]
+
+Tasks and commitments for the week:
+[PASTE your list — matters with deadlines, court/settlement dates,
+ client calls, staff supervision tasks, compliance renewals, admin]
+
+## Example Output
+**Monday**
+08:30–10:00  Draft s.21 agreement — Matter 0000 (billable, settlement Thursday)
+10:00–10:30  Review Mia's trust deed draft — Matter 0001 (supervision, return by 11am)
+10:30–11:00  AML/CFT renewal — Client A (compliance, due today)
+11:00–12:00  Title review and requisitions — Matter 0002 (billable)
+12:00–13:00  Lunch
+13:00–14:00  Client correspondence and emails
+14:00–14:45  Call: Client B — settlement query
+15:00–15:30  Time recording and billing review
+15:30–16:00  Buffer / urgent matters
+
+**Tuesday**
+...
+
+**Risk flags for the week**
+- Matter 0003: limitation period falls Friday — must be actioned by Thursday.
+- Trust account reconciliation due Friday — confirm Actionstep entries complete by Thursday.
+- Mia's supervision log needs updating by Wednesday.
+
+## Notes
+Works best when you paste your Actionstep task list or a quick bullet
+list of the week's matters. Include deadlines wherever known.
+Run alongside the interactive planner (interactive-planner.html) —
+add the week's tasks to the planner, then use this prompt to get the
+suggested schedule.
