@@ -526,6 +526,80 @@ body {
 </div>
 
 <script>
+// ── Seed data (loaded once when localStorage is empty) ────────────────────
+const SEED_TASKS = [
+  // 5735 — Loosley, Marua Road sale
+  {title:"Order discharge of mortgage",matterRef:"5735",type:"billable",priority:5,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Lead time — must go out promptly. Chase if no response by next day.",completed:false},
+  {title:"Order final water meter reading",matterRef:"5735",type:"billable",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Required for settlement statement.",completed:false},
+  {title:"Order rates position",matterRef:"5735",type:"billable",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Required for settlement statement.",completed:false},
+  {title:"Prepare transfer documents",matterRef:"5735",type:"billable",priority:5,energyRequired:"high",deadline:null,durationHours:1.5,notes:"Full pack: transfer, A&I, tax statement, reconciliation statement.",completed:false},
+  {title:"Prepare A&I",matterRef:"5735",type:"billable",priority:5,energyRequired:"high",deadline:null,durationHours:0.5,notes:"Part of settlement pack.",completed:false},
+  {title:"Prepare tax statement",matterRef:"5735",type:"billable",priority:5,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Part of settlement pack.",completed:false},
+  {title:"Prepare reconciliation statement",matterRef:"5735",type:"billable",priority:5,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Part of settlement pack.",completed:false},
+  {title:"Obtain instructions re payment of proceeds of sale",matterRef:"5735",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Contact Linda and Thomas Loosley.",completed:false},
+  {title:"Send settlement statement to purchaser's lawyer",matterRef:"5735",type:"billable",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Contingent on rates and water figures being received.",completed:false},
+  {title:"Sign transfer documents — Teams",matterRef:"5735",type:"billable",priority:5,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Linda and Thomas Loosley. Confirm Teams link.",completed:false},
+  {title:"Cancel Calendly holds once signing complete",matterRef:"5735",type:"admin",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"Remove old booking holds from calendar.",completed:false},
+  // 5805 — Bennett & Cameron
+  {title:"Save/request documents; prepare disclosure",matterRef:"5805",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:1,notes:"",completed:false},
+  {title:"Arrange Abi and Lachlan to sign",matterRef:"5805",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Confirm citizenship/residency before preparing OIC.",completed:false},
+  {title:"Prepare OIC",matterRef:"5805",type:"billable",priority:4,energyRequired:"high",deadline:null,durationHours:1,notes:"Confirm Abi and Lachlan's citizenship/residency first.",completed:false},
+  {title:"Prepare A&I",matterRef:"5805",type:"billable",priority:4,energyRequired:"high",deadline:null,durationHours:0.5,notes:"Bennett & Cameron purchase.",completed:false},
+  {title:"Prepare tax statement",matterRef:"5805",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Bennett & Cameron.",completed:false},
+  {title:"Prepare reconciliation statement",matterRef:"5805",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Bennett & Cameron.",completed:false},
+  {title:"Issue invoice",matterRef:"5805",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"",completed:false},
+  {title:"Chase Kiwibank re refinance docs",matterRef:"5805",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"",completed:false},
+  // 5824 — Inkster & Bocking
+  {title:"File notes from client meeting",matterRef:"5824",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.75,notes:"Capture all decisions immediately after meeting.",completed:false},
+  {title:"Email ASB",matterRef:"5824",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Post-meeting action.",completed:false},
+  {title:"Confirm final form of agreement to Felicity",matterRef:"5824",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Arrange signing",matterRef:"5824",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Contact Inkster and Bocking.",completed:false},
+  // 5838 — Hilda
+  {title:"Extract notes from Otter",matterRef:"5838",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.75,notes:"Hilda meeting.",completed:false},
+  {title:"Send notes to Hilda and William",matterRef:"5838",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Plan matter",matterRef:"5838",type:"billable",priority:3,energyRequired:"high",deadline:null,durationHours:0.5,notes:"",completed:false},
+  // 5831 — Star Family Trust
+  {title:"Send letter of engagement",matterRef:"5831",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Mia to draft, Scott to review, Tracey to approve.",completed:false},
+  {title:"Submit IRD number application",matterRef:"5831",type:"compliance",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Otis to prep, Tracey to review and submit.",completed:false},
+  {title:"Confirm terms of agreement with trustees",matterRef:"5831",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"23 Ferryhill.",completed:false},
+  // 5828 — Rawhiti
+  {title:"Respond to Gabby and Sean",matterRef:"5828",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Re Rawhiti.",completed:false},
+  {title:"Issue invoice",matterRef:"5828",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"",completed:false},
+  // 5813 — Kneehone
+  {title:"Extract notes from Otter",matterRef:"5813",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.75,notes:"Trevor and Sherron Kneehone.",completed:false},
+  {title:"Record instructions",matterRef:"5813",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Arrange signing meeting",matterRef:"5813",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Contact Trevor and Sherron.",completed:false},
+  // 5803 — Baguley
+  {title:"File notes from counsel meeting",matterRef:"5803",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.75,notes:"Wyndham Chambers. Jennifer.",completed:false},
+  {title:"Add agreed disclosure to counsel SharePoint",matterRef:"5803",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Add Jennifer's PA to SharePoint site",matterRef:"5803",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.25,notes:"",completed:false},
+  {title:"Send disclosure list and propose timeline",matterRef:"5803",type:"billable",priority:4,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Send to Jennifer.",completed:false},
+  {title:"Issue invoice",matterRef:"5803",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"Invoice to Michelle Baguley.",completed:false},
+  // 2910
+  {title:"Follow up Lyne Davis — progress update",matterRef:"2910",type:"billable",priority:3,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Establish if anything further required.",completed:false},
+  {title:"Issue invoice to Louise",matterRef:"2910",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"",completed:false},
+  {title:"Respond to Louise's enquiry",matterRef:"2910",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Respond to Jeanine Mitchell",matterRef:"2910",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  // 5834 — Pirrit
+  {title:"Issue invoice",matterRef:"5834",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"Pirrit roof claim.",completed:false},
+  // 5715
+  {title:"Review emails from Jamie Paea and Robert Berry",matterRef:"5715",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  {title:"Respond to Jamie Paea and Robert Berry",matterRef:"5715",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"",completed:false},
+  // 2575 — Peachman
+  {title:"Prepare payment to David",matterRef:"2575",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"Scott to prepare, Tracey to authorise.",completed:false},
+  {title:"Issue invoice",matterRef:"2575",type:"billable",priority:2,energyRequired:"low",deadline:null,durationHours:0.25,notes:"Scott.",completed:false},
+  // New Loosley entity
+  {title:"Set up new matter in Actionstep",matterRef:"Loosley entity",type:"admin",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Otis. Confirm existing company or new incorporation first.",completed:false},
+  {title:"Run conflict check",matterRef:"Loosley entity",type:"compliance",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Otis.",completed:false},
+  {title:"First AML CDD",matterRef:"Loosley entity",type:"compliance",priority:4,energyRequired:"low",deadline:null,durationHours:0.5,notes:"Otis sends link. Tracey to approve before sending.",completed:false},
+  {title:"Draft letter of engagement",matterRef:"Loosley entity",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:1,notes:"Mia to draft. Scott to review. Tracey to approve.",completed:false},
+  {title:"Sign engagement letter at signing meeting",matterRef:"Loosley entity",type:"billable",priority:3,energyRequired:"medium",deadline:null,durationHours:0.5,notes:"In person.",completed:false},
+  // Compliance / Admin
+  {title:"Trust account reconciliation — month-end",matterRef:null,type:"compliance",priority:5,energyRequired:"high",deadline:null,durationHours:1.5,notes:"Tracey only. Cannot be delegated.",completed:false},
+  {title:"IBD — Interest Bearing Deposit",matterRef:null,type:"compliance",priority:5,energyRequired:"high",deadline:null,durationHours:0.5,notes:"Linked to trust account reconciliation.",completed:false},
+  {title:"Clio trial setup",matterRef:null,type:"admin",priority:2,energyRequired:"medium",deadline:null,durationHours:1,notes:"Scott's remit.",completed:false},
+];
+
 // ── Constants ──────────────────────────────────────────────────────────────
 const H0 = 7, H1 = 19;
 const DAYS  = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
@@ -549,7 +623,13 @@ function save() {
 function load() {
   try {
     const r = localStorage.getItem('tel2_v1');
-    if (r) { const d=JSON.parse(r); G.tasks=d.tasks||[]; G.slots=d.slots||{}; }
+    if (r) {
+      const d=JSON.parse(r); G.tasks=d.tasks||[]; G.slots=d.slots||{};
+    } else {
+      G.tasks = SEED_TASKS.map(t=>({...t, id:uid()}));
+      G.slots = {};
+      save();
+    }
   } catch(_){}
 }
 
