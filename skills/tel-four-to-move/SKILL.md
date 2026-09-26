@@ -28,7 +28,7 @@ A weekly prioritisation ritual with a printed output. Tracey names the matters t
    python3 scripts/build.py <data.json> <out.html>
    NODE_PATH=$(npm root -g) node scripts/render.js <out.html> <Four-to-Move.pdf> <preview.png>
    ```
-   Paths are relative to this skill's folder. The fonts are embedded from `assets/fonts`, so the file needs no network. If the render reports `OVERFLOW`, shorten the named page's first move or next moves and rebuild. Look at the preview before sending.
+   Paths are relative to this skill's folder. The fonts are embedded from `assets/fonts`, so the file needs no network. If the render reports `OVERFLOW`, shorten the named page's first move or next moves and rebuild. Look at the preview before sending. If Playwright or Chromium is not available, deliver the HTML file instead: it prints correctly from Chrome or Edge (Print, A4, margins None, background graphics on).
 7. **Deliver** the PDF and preview to Tracey. Printing note: A4, actual size, background graphics on.
 8. **Friday reset (offer it).** On Friday, ask which files went green, carry anything amber or red forward, and rebuild for the next Monday.
 
