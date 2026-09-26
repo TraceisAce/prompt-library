@@ -1,0 +1,37 @@
+{
+  "week_start": "2026-10-05",
+  "rule_time": "1pm",
+  "matters": [
+    {
+      "name": "Client A",
+      "type": "Relationship property",
+      "matter_no": "0001",
+      "first_move": "Check our client's disclosure is complete against the asset and liability schedule.",
+      "next_moves": ["Send our disclosure and request theirs, with a response date", "Propose meeting dates", "Diarise the response date in Actionstep"],
+      "deadline": "",
+      "waiting_on": "",
+      "since": ""
+    },
+    {
+      "name": "Client B",
+      "type": "Section 21 agreement",
+      "matter_no": "0002",
+      "first_move": "Final read of the section 21 agreement before it goes out.",
+      "next_moves": ["Send the agreement to the other party's lawyer", "Diarise a follow-up for their comments", "Plan independent advice and signing (s 21F)"]
+    },
+    {
+      "name": "Client C",
+      "type": "Lease",
+      "matter_no": "0003",
+      "first_move": "Review the final lease document and list any changes needed.",
+      "next_moves": ["Send any changes to the other side", "Confirm signatories and arrange signing", "Diarise the signing date in Actionstep"]
+    },
+    {
+      "name": "Client D",
+      "type": "Building defects claim",
+      "matter_no": "0004",
+      "first_move": "Find the last thing sent and name who owes the next step.",
+      "next_moves": []
+    }
+  ]
+}

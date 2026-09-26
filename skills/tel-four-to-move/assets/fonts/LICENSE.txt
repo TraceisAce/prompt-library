@@ -1,0 +1,3 @@
+Poppins (weights 400, 600, 800, Latin subset) by Indian Type Foundry and Jonny Pinhorn.
+Licensed under the SIL Open Font License, Version 1.1: https://openfontlicense.org
+Source: Google Fonts.
